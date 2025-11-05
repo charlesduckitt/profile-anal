@@ -1,10 +1,8 @@
-<div align="center">
-<img width="1200" height="475" alt="Charles Duckitt" />
-</div>
 
-# Run and deploy your AI Studio app
 
-This contains everything you need to run your app locally.
+# Charles Duckitt
+
+Profile Analysis App module with integration endpoints into main app.
 
 
 
