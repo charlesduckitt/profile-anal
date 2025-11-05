@@ -1,0 +1,5 @@
+{
+  "name": "Noesis Hiring",
+  "description": "An interactive web application from Noesis Hiring that helps users discover their personality and thinking style profiles based on the DISC and Herrmann Brain Dominance models. The app presents a series of questions and leverages the Gemini API to generate personalized, detailed analyses.",
+  "requestFramePermissions": []
+}
