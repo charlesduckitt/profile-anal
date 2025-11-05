@@ -1,8 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { type DiscScores, type HerrmannScores } from "../types";
 
-// @ts-ignore
-const API_KEY = GEMINI_API_KEY;
+const API_KEY = import.meta.env.GEMINI_API_KEY;
 
 if (!API_KEY) {
   throw new Error("GEMINI_API_KEY environment variable is not set");

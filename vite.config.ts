@@ -11,8 +11,9 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [react()],
     define: {
-      // Replace process.env.GEMINI_API_KEY with GEMINI_API_KEY at build time
-      GEMINI_API_KEY: JSON.stringify(env.GEMINI_API_KEY),
+      // Make environment variables available globally
+      "process.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY),
+      "import.meta.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY),
     },
     resolve: {
       alias: {
