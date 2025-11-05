@@ -100,7 +100,6 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ username, scores, analysi
              <p className="ml-4 text-slate-600 dark:text-slate-300">Generating your analysis...</p>
            </div>
         )}
-        {error && <div className="p-4 bg-red-100 dark:bg-red-900 border border-red-400 text-red-700 dark:text-red-200 rounded-lg">{error}</div>}
         {analysis && !error && (
             <div className="prose prose-slate dark:prose-invert max-w-none bg-slate-50 dark:bg-slate-700/50 p-6 rounded-lg">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{analysis}</ReactMarkdown>
