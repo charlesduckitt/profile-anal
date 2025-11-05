@@ -11,12 +11,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@layer base {
-  body {
-    @apply m-0 flex min-h-screen min-w-[320px];
-  }
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  min-width: 320px;
+}
 
-  #root {
-    @apply w-full m-auto text-center;
-  }
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }

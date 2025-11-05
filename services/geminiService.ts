@@ -1,28 +1,31 @@
 import { GoogleGenAI } from "@google/genai";
-import { type DiscScores, type HerrmannScores } from '../types';
+import { type DiscScores, type HerrmannScores } from "../types";
 
-const API_KEY = process.env.API_KEY;
+// @ts-ignore
+const API_KEY = GEMINI_API_KEY;
 
 if (!API_KEY) {
-  throw new Error("API_KEY environment variable is not set");
+  throw new Error("GEMINI_API_KEY environment variable is not set");
 }
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 const callGemini = async (prompt: string): Promise<string> => {
-    try {
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: prompt,
-        });
-        return response.text;
-    } catch (error) {
-        console.error("Gemini API call failed:", error);
-        throw new Error("Failed to generate analysis from Gemini API.");
-    }
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+    });
+    return response.text;
+  } catch (error) {
+    console.error("Gemini API call failed:", error);
+    throw new Error("Failed to generate analysis from Gemini API.");
+  }
 };
 
-export const generateDiscAnalysis = async (scores: DiscScores): Promise<string> => {
+export const generateDiscAnalysis = async (
+  scores: DiscScores
+): Promise<string> => {
   const { Dominance, Influence, Steadiness, Conscientiousness } = scores;
   const prompt = `
     You are an expert in DISC personality assessments. Based on the following scores (Dominance: ${Dominance}, Influence: ${Influence}, Steadiness: ${Steadiness}, Conscientiousness: ${Conscientiousness}), please provide a detailed personality analysis.
@@ -36,12 +39,14 @@ export const generateDiscAnalysis = async (scores: DiscScores): Promise<string> 
 
     Format the entire response in Markdown. Use headings for each section.
     `;
-    return callGemini(prompt);
+  return callGemini(prompt);
 };
 
-export const generateHerrmannAnalysis = async (scores: HerrmannScores): Promise<string> => {
-    const { Analytical, Sequential, Interpersonal, Imaginative } = scores;
-    const prompt = `
+export const generateHerrmannAnalysis = async (
+  scores: HerrmannScores
+): Promise<string> => {
+  const { Analytical, Sequential, Interpersonal, Imaginative } = scores;
+  const prompt = `
     You are an expert in the Herrmann Brain Dominance Instrument (HBDI). Based on the following scores (Analytical/Blue: ${Analytical}, Sequential/Green: ${Sequential}, Interpersonal/Red: ${Interpersonal}, Imaginative/Yellow: ${Imaginative}), please provide a detailed analysis of the user's thinking style.
 
     The analysis should include:
@@ -53,5 +58,5 @@ export const generateHerrmannAnalysis = async (scores: HerrmannScores): Promise<
 
     Format the entire response in Markdown. Use headings for each section.
     `;
-    return callGemini(prompt);
+  return callGemini(prompt);
 };
